@@ -19,14 +19,14 @@ class LIFOCache(BaseCaching):
         assign to the dictionary self.cache_data
         the item value for the key key
         '''
-        if key is None and item is None:
+        if key is None or item is None:
             return
         self.cache_data[key] = item
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            if self.last_key:
-                self.cache_data.po(self.last_key)
-                print(f'DISCARD: {self.last_key}')
-        self.last_key = key
+        if len(self.cache_data) > BaseCaching.MAX_SIZE:
+            self.cache_data.popitem(last=False)
+        else:
+            return
+        
 
     def get(self, key):
         '''
