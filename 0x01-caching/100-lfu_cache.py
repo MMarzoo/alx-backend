@@ -2,6 +2,7 @@
 """
 FU Caching
 """
+
 from base_caching import BaseCaching
 
 
