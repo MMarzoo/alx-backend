@@ -26,7 +26,6 @@ class LIFOCache(BaseCaching):
             if self.last_key:
                 self.cache_data.pop(self.last_key)
                 print(f'DISCARD: {self.last_key}')
-        self.last_key = key
 
     def get(self, key):
         '''
