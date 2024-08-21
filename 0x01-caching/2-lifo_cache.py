@@ -20,7 +20,7 @@ class LIFOCache(BaseCaching):
         the item value for the key key
         '''
         if key is None and item is None:
-            return None
+            return
         self.cache_data[key] = item
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             if self.last_key:
