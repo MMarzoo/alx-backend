@@ -19,7 +19,7 @@ class LIFOCache(BaseCaching):
         Must assign to the dictionary self.cache_data
         the item value for the key key
         '''
-        if key is None and item is None:
+        if key is not None and item is not None:
             return
         self.cache_data[key] = item
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
@@ -33,7 +33,4 @@ class LIFOCache(BaseCaching):
         '''
         Must return the value in self.cache_data linked to key.
         '''
-        if key is None or key not in self.cache_data.keys():
-            return None
-
-        return self.cache_data[key]
+        return self.cache_data.get(key, None)
