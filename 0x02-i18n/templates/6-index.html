@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='{{ locale }}'>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
 <body>
     <h1>{{ gettext('home_header') }}</h1>
     {% if user %}
-    <p>{{ gettext('logged_in_as', username=g.user.name) }}</p>
+    <p>{{ gettext('logged_in_as', username=user.name) }}</p>
     {% else %}
     <p>{{ gettext('not_logged_in') }}</p>
     {% endif %}
