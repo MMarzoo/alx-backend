@@ -67,7 +67,7 @@ def index():
     """
     Return the index page
     """
-    return render_template('6-index.html', locale=get_locale(), user=g.user)
+    return render_template('6-index.html')
 
 
 if __name__ == "__main__":
