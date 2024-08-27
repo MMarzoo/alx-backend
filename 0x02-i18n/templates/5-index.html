@@ -9,9 +9,9 @@
 <body>
     <h1>{{ gettext('home_header') }}</h1>
     {% if user %}
-    <p>{{ gettext('not_logged_in', username=user.name) }}</p>
+    <p>{{ gettext('You are logged in as', username=user.name) }}</p>
     {% else %}
-    <p>{{ gettext('logged_in_as') }}</p>
+    <p>{{ gettext('You are not logged in') }}</p>
     {% endif %}
 </body>
 </html>>
