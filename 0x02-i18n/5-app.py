@@ -45,10 +45,10 @@ def get_locale():
 
 def get_user() -> dict:
     """ Get user from login_as parameter """
-    user_id = request.args.get('login_as')
-    if user_id is None:
-        return None
-    return users.get(int(user_id))
+    login_id = request.args.get('login_as')
+    if login_id:
+        return users.get(int(login_id))
+    return None
 
 
 @app.before_request
