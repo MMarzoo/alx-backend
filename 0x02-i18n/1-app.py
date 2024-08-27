@@ -2,12 +2,15 @@
 """
 A Basic flask application
 """
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
 from flask_babel import Babel
 
 
-class Config(object):
+app = Flask(__name__)
+babel = Babel(app)
+
+
+class Config():
     """
     Application configuration class
     """
@@ -16,21 +19,16 @@ class Config(object):
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-# Instantiate the application object
-app = Flask(__name__)
 app.config.from_object(Config)
 
-# Wrap the application with Babel
-babel = Babel(app)
 
-
-@app.route('/', strict_slashes=False)
-def index() -> str:
+@app.route('/')
+def index():
     """
-    Renders a basic html template
+    Return the index page
     """
     return render_template('1-index.html')
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
