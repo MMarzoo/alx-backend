@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
 """
-Basic Babel setup
+A Basic flask application
 """
-
 from flask import Flask
 from flask import render_template
 from flask_babel import Babel
 
-app = Flask(__name__)
-babel = Babel(app)
 
-
-class config(object):
+class Config(object):
     """
     Application configuration class
     """
@@ -20,16 +16,21 @@ class config(object):
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-app.config.from_object(config)
+# Instantiate the application object
+app = Flask(__name__)
+app.config.from_object(Config)
+
+# Wrap the application with Babel
+babel = Babel(app)
 
 
-@app.route('/')
-def index():
+@app.route('/', strict_slashes=False)
+def index() -> str:
     """
-    Return the index page
+    Renders a basic html template
     """
     return render_template('1-index.html')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()
