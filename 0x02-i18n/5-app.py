@@ -43,13 +43,11 @@ def get_locale():
 
 
 def get_user():
-    """
-    returns a user dictionary or None if the ID cannot be found
-    """
-    login_id = request.args.get('login_as')
-    if login_id:
-        return user.get(int(login_id))
-    return None
+    """ Get user from login_as parameter """
+    user_id = request.args.get('login_as')
+    if user_id is None:
+        return None
+    return users.get(int(user_id))
 
 
 @app.before_request
@@ -57,8 +55,7 @@ def before_request():
     """
     Set user as a global on flask.g.user
     """
-    user = get_user
-    g.user = user
+    g.user = get_user()
 
 
 @app.route('/')
