@@ -2,11 +2,12 @@
 """
 A Basic flask application
 """
+
 import pytz
 from flask import Flask
 from flask import render_template
 from flask import request, g
-from flask_babel import Babel
+from flask_babel import Babel, format_datetime
 
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -82,7 +83,8 @@ def index():
     """
     Return the index page
     """
-    return render_template('7-index.html', locale=get_locale(), user=g.user)
+    g.time = format_datetime()
+    return render_template('index.html', locale=get_locale(), user=g.user)
 
 
 if __name__ == "__main__":
