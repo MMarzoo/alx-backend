@@ -17,6 +17,7 @@ users = {
 
 app = Flask(__name__)
 babel = Babel(app)
+app.url_map.strict_slashes = False
 
 
 class Config():
@@ -42,7 +43,7 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-def get_user():
+def get_user() -> dict:
     """ Get user from login_as parameter """
     user_id = request.args.get('login_as')
     if user_id is None:
@@ -52,9 +53,7 @@ def get_user():
 
 @app.before_request
 def before_request():
-    """
-    Set user as a global on flask.g.user
-    """
+    """ Set user before each request """
     g.user = get_user()
 
 
